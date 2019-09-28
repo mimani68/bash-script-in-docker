@@ -1,14 +1,40 @@
 #!/bin/bash
 
-[[ -f time_generator ]] && source time_generator || echo 'need time generator file'
+#----------------------------------------#
+#                                        #
+#         D E P E N D E N C Y            #
+#                                        #
+#----------------------------------------#
+function checkDependency {
+    TIME_GENERATOR_FILE="${PWD%/*}/common/time_generator"
+    if [ -f "$TIME_GENERATOR_FILE" ]; then
+        source $TIME_GENERATOR_FILE
+    else
+        echo 'need time generator file'
+    fi
+}
 
+#----------------------------------------#
+#                                        #
+#          D E P E N D E N C Y           #
+#                                        #
+#----------------------------------------#
+checkDependency
+
+#----------------------------------------#
+#                                        #
+#            V A R I A B L E             #
+#                                        #
+#----------------------------------------#
 IMAGE_NAME='node'
 IMAGE_TAGE='10.16.3-alpine'
 RELEASE_TIME=$(timeGenerator)
+GIT_COMMIT=$(gitCommitSelector)
 
 file="
 FROM $IMAGE_NAME:$IMAGE_TAGE
 \nARG TIME=$RELEASE_TIME
+\nLABEL COMMIT=${GIT_COMMIT}
 \nRUN echo release time: ${RELEASE_TIME}"
 
 echo -e $file

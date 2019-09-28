@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# TEMP="$(cat ./dockerfile_builder)"
-# echo $TEMP
-
-# COPY=$(./dockerfile_builder)
-# echo $COPY
-
+#----------------------------------------#
+#                                        #
+#         D E P E N D E N C Y            #
+#                                        #
+#----------------------------------------#
 # [[ -f dockerfile_builder ]] && ./dockerfile_builder || echo 'need generator file'
 # [[ -f dockerfile_builder ]] && source dockerfile_builder || echo 'need generator file'
 [[ -f dockerfile_builder ]] && . dockerfile_builder || echo 'need generator file'
 
+#----------------------------------------#
+#                                        #
+#              B  U  I  L  D             #
+#                                        #
+#----------------------------------------#
 . dockerfile_builder | docker build --no-cache --rm --force-rm -
 
 
