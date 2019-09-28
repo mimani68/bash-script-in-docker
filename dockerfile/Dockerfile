@@ -1,5 +1,4 @@
 # 
-# 
 # docker build
 #   --build-arg NEW_VALUE=`date --iso-8601=seconds` \
 #   --no-cache \
@@ -8,18 +7,21 @@
 #   .
 # 
 
-ARG CODE_VERSION=10.16.3-alpine
+ARG IMAGE_NAME='node'
+ARG IMAGE_TAGE='10.16.3-alpine'
+# ARG VERSION=v0.0.1
+# ARG NEW_VALUE=salam
 
-FROM node:${CODE_VERSION} AS base
+FROM $IMAGE_NAME:$IMAGE_TAGE AS base
 ARG NEW_VALUE
 ARG VERSION
 RUN echo value-${NEW_VALUE}-$VERSION
 
-FROM node:${CODE_VERSION} AS development
+FROM $IMAGE_NAME:$IMAGE_TAGE AS development
 ARG NEW_VALUE
 RUN echo value-$NEW_VALUE
 
-FROM node:${CODE_VERSION} AS production
+FROM $IMAGE_NAME:$IMAGE_TAGE AS production
 ARG NEW_VALUE
 RUN echo $NEW_VALUE > a.txt && \ 
 ls && \

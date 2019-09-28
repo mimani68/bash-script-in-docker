@@ -1,0 +1,11 @@
+#!/bin/bash
+
+RELEASE_TIME=$(date -I)
+IMAGE_NAME='node'
+IMAGE_TAGE='10.16.3-alpine'
+
+file="$IMAGE_NAME:$IMAGE_TAGE
+\nARG TIME=$RELEASE_TIME
+\nRUN echo release time: ${TIME}"
+
+echo -e $file

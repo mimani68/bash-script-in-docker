@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+# TEMP="$(cat ./dockerfile_builder)"
+# echo $TEMP
+
+# COPY=$(./dockerfile_builder)
+# echo $COPY

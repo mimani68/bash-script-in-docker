@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#----------------------------------------#
+#                                        #
+#          F U N C T I O N S             #
+#                                        #
+#----------------------------------------#
+function timeGenerator {
+    echo $(date -I)
+}
+
+function gitCommitSelector {
+    echo $(git rev-parse --short HEAD)
+}
