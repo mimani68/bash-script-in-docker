@@ -1,0 +1,5 @@
+#!/bin/bash
+
+function timeGenerator {
+    echo $(date -I)
+}

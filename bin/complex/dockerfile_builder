@@ -1,0 +1,15 @@
+#!/bin/bash
+
+[[ -f time_generator ]] && source time_generator || echo 'need time generator file'
+
+IMAGE_NAME='node'
+IMAGE_TAGE='10.16.3-alpine'
+RELEASE_TIME=$(timeGenerator)
+
+file="
+FROM $IMAGE_NAME:$IMAGE_TAGE
+\nARG TIME=$RELEASE_TIME
+\nRUN echo release time: ${RELEASE_TIME}"
+
+echo -e $file
+
